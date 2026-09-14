@@ -44,7 +44,7 @@ class SecuritiesViewModel @Inject constructor(
                     // 發起請求前，切換為 Loading 狀態
                     _uiState.value = StockUiState.Loading
                 }
-                .catch { 
+                .catch {
                     // 由 Repository coroutineScope 拋出的例外
                     val errorMessage =  "網路連線異常，請稍後再試"
                     _uiState.value = StockUiState.Error(errorMessage)
