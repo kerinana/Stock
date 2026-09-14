@@ -44,7 +44,7 @@ class SecuritiesViewModel @Inject constructor(
                     // 發起請求前，切換為 Loading 狀態
                     _uiState.value = StockUiState.Loading
                 }
-                .catch { exception ->
+                .catch { 
                     // 由 Repository coroutineScope 拋出的例外
                     val errorMessage =  "網路連線異常，請稍後再試"
                     _uiState.value = StockUiState.Error(errorMessage)
@@ -76,13 +76,5 @@ class SecuritiesViewModel @Inject constructor(
 
         // 更新 StateFlow
         _uiState.value = StockUiState.Success(stocks = sortedList)
-    }
-
-    /**
-     * 輔助函式：解析漲跌幅字串 "+2.50%" 或 "-1.20%" 為 Double 供排序使用
-     */
-    private fun parseChangePercent(percentStr: String): Double {
-        val cleaned = percentStr.replace("%", "").replace("+", "").trim()
-        return cleaned.toDoubleOrNull() ?: Double.MIN_VALUE
     }
 }

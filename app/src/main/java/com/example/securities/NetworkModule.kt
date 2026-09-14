@@ -42,7 +42,7 @@ object NetworkModule {
         okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://openapi.twse.com.tw/") // 👈 注意末尾要帶斜線 '/'
+            .baseUrl("https://openapi.twse.com.tw/")
             .client(okHttpClient) // 👈 將設定好的 OkHttpClient 帶入 Retrofit
             .addConverterFactory(GsonConverterFactory.create())
             .build()

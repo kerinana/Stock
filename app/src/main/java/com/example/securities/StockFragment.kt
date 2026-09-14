@@ -50,12 +50,10 @@ class StockFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-//        stockAdapter = StockAdapter()
-        // 🎯 傳入點擊事件，觸發 AlertDialog
         stockAdapter = StockAdapter { stock ->
             showStockDetailDialog(stock)
         }
-        // 🎯 註冊 Adapter 資料變動監聽器
+
         stockAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
             override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
                 //項目位置移動

@@ -72,19 +72,6 @@ class StockRepositoryImpl @Inject constructor(
         val highestPrice = parseDouble(stockDay.highestPrice)
         val lowestPrice = parseDouble(stockDay.lowestPrice)
 
-        // 計算漲跌幅 (%)：只要收盤價或漲跌價額有一方為 null，結果就直接為 null
-//        val changeRate: Double? = if (closingPrice != null && signedChangeVal != null) {
-//            val previousClose = closingPrice - signedChangeVal
-//            // 確保分母 (前日收盤價) 大於 0 才進行除法，防止 Divide by Zero 得到 Infinity 或 NaN
-//            if (previousClose > 0) {
-//                (signedChangeVal / previousClose) * 100
-//            } else {
-//                null
-//            }
-//        } else {
-//            null
-//        }
-
         // 本益比 / 殖利率 / 股價淨值比 取自 getBwibbuAll 回傳資料
         val peRatio = parseDouble(bwibbu?.peRatio)
         val pbRatio = parseDouble(bwibbu?.pbRatio)
@@ -108,7 +95,6 @@ class StockRepositoryImpl @Inject constructor(
             name = stockDay.name?.trim().orEmpty(),
             closingPrice = formatNumber(closingPrice, "%,.2f"),
             change = "$prefix${formatNumber(signedChangeVal, "%.2f")}",
-//            changePercent = "$prefix${formatNumber(changeRate, "%.2f")}%",
             openPrice = formatNumber(openPrice, "%,.2f"),
             highestPrice = formatNumber(highestPrice, "%,.2f"),
             lowestPrice = formatNumber(lowestPrice, "%,.2f"),

@@ -20,14 +20,14 @@ class StockAdapter(private val onItemClick: (StockUiData) -> Unit) : ListAdapter
     }
 
     override fun onBindViewHolder(holder: StockViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onItemClick)
     }
 
-    inner class StockViewHolder(
+     class StockViewHolder(
         private val binding: ItemStockBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: StockUiData) {
+        fun bind(item: StockUiData, onItemClick: (StockUiData) -> Unit) {
             val context = binding.root.context
             // 取得解析後的 Color Int (注意：此處型態為 Int)
             val stockColor = ContextCompat.getColor(context, item.changeColorRes)
@@ -58,6 +58,7 @@ class StockAdapter(private val onItemClick: (StockUiData) -> Unit) : ListAdapter
         }
     }
 
+    //ListAdapter
     private class StockDiffCallback : DiffUtil.ItemCallback<StockUiData>() {
         override fun areItemsTheSame(oldItem: StockUiData, newItem: StockUiData): Boolean {
             return oldItem.code == newItem.code
