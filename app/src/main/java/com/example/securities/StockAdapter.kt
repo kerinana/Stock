@@ -1,5 +1,6 @@
 package com.example.securities
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -27,6 +28,7 @@ class StockAdapter(private val onItemClick: (StockUiData) -> Unit) : ListAdapter
         private val binding: ItemStockBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: StockUiData, onItemClick: (StockUiData) -> Unit) {
             val context = binding.root.context
             // 取得解析後的 Color Int (注意：此處型態為 Int)
